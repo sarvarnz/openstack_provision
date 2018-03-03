@@ -1,0 +1,51 @@
+- hosts: jumpbox
+  roles:
+   - osp-network
+   - osp-keypair
+   - osp-securitygroup
+  tasks:
+  
+#  - name: Create app1 instance
+#    include_role:
+#       name: osp-instances
+#       vars_from: app1.yml
+#  - name: Create app2 instance
+#    include_role:
+#       name: osp-instances
+#       vars_from: app2.yml
+  - name: Create frontend instance
+    include_role:
+     name: osp-instances
+     vars_from: frontend.yml
+  - name: Create app1 instance
+    include_role:
+     name: osp-instances
+     vars_from: app1.yml
+  - name: Create app2 instance
+    include_role:
+     name: osp-instances
+     vars_from: app2.yml
+  - name: Create db instance
+    include_role:
+     name: osp-instances
+     vars_from: db.yml
+  - name: Gather facts
+    include_role: 
+     name: osp-facts
+    tags:
+     - test_inventory
+- hosts: frontend
+  name: Configuring FrontEnd Server
+  roles: 
+   - frontends
+
+- hosts: apps
+  name: Configuring App Server
+  roles: 
+   - apps
+
+- hosts: db
+  name: Configure DB Server
+  roles:
+   - appdbs
+
