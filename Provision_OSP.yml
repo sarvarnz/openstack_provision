@@ -1,0 +1,10 @@
+---
+- hosts: jumpbox
+  become: yes
+  gather_facts: False
+  roles:
+   - osp-image
+   - osp-flavor
+   - osp-network
+   - osp-keypair
+
