@@ -1,8 +1,8 @@
 - hosts: jumpbox
-  roles:
-   - osp-network
-   - osp-keypair
-   - osp-securitygroup
+#  roles:
+#   - osp-network
+#   - osp-keypair
+#   - osp-securitygroup
   tasks:
   
 #  - name: Create app1 instance

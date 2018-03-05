@@ -1,5 +1,0 @@
----
-- hosts: workstation-291b.rhpds.opentlc.com
-  roles:
-   - osp-network
-   - osp-keypair
