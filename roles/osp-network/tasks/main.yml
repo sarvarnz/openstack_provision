@@ -1,10 +1,12 @@
 ---  
-- os_network:
+- name: Creating External Network 
+  os_network:
    cloud: ospcloud
    state: present
    name: ext_network
    external: true
-- os_subnet:
+- name: Creating External Network Subnet
+  os_subnet:
    cloud: ospcloud
    state: present
    network_name: ext_network
@@ -18,7 +20,8 @@
       nexthop: 10.10.10.0
     - destination: 192.168.0.0/24
       nexthop: 192.168.0.0
-- os_network:
+- name: Creating Internal Network
+  os_network:
    cloud: ospcloud
    state: present
    name: int_network
@@ -26,7 +29,8 @@
   register: internal
   tags:
    - tested
-- os_subnet:
+- name: Creating Internal Network Subnet 
+  os_subnet:
    cloud: ospcloud
    state: present
    network_name: int_network
@@ -40,8 +44,8 @@
       nexthop: 192.168.0.0
     - destination: 192.168.0.0/24
       nexthop: 192.168.0.0
-
-- os_router:
+- name: Creating Router for Internal And External Network
+  os_router:
    cloud: ospcloud
    state: present
    name: router1
