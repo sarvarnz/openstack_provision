@@ -46,4 +46,4 @@ localhost
 #10.10.10.7
 #10.10.10.15
 [jumpbox]
-workstation-291b.rhpds.opentlc.com  ansible_ssh_user=cloud-user ansible_ssh_private_key_file=~/.ssh/openstack.pem
+workstation-291b.rhpds.opentlc.com  ansible_ssh_user=cloud-user ansible_ssh_private_key_file=./.ssh/openstack.pem
