@@ -1,8 +1,8 @@
 - hosts: jumpbox
-  roles:
-   - osp-network
-   - osp-keypair
-   - osp-securitygroup
+#  roles:
+#   - osp-network
+#   - osp-keypair
+#   - osp-securitygroup
   tasks:
   
 #  - name: Create app1 instance
@@ -34,7 +34,7 @@
      name: osp-facts
     tags:
      - test_inventory
-- hosts: frontend
+- hosts: frontends
   name: Configuring FrontEnd Server
   roles: 
    - frontends
@@ -44,7 +44,7 @@
   roles: 
    - apps
 
-- hosts: db
+- hosts: appdbs
   name: Configure DB Server
   roles:
    - appdbs
