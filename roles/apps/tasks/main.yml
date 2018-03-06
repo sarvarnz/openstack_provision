@@ -1,0 +1,64 @@
+- name: Installing  tomcat on App Servers 
+  package:
+   name: tomcat
+   state: latest
+#  with_indexed_items:
+#   - "{{ groups['apps'] }}"
+
+
+- name: enable tomcat at boot
+  service:
+   name: tomcat
+   enabled: yes
+#  with_indexed_items:
+#   - "{{ groups['apps'] }}"
+
+- name: Create ansible tomcat directory on App Servers
+  file:
+   path: /usr/share/tomcat/webapps/ansible
+   state: directory
+#  with_indexed_items:
+#   - "{{ groups['apps'] }}"
+    
+- name: Create ansible tomcat webapps ROOT directory on App Servers
+  file:
+   path: /usr/share/tomcat/webapps/ROOT
+   state: directory
+#  with_indexed_items: 
+#   - "{{ groups['apps'] }}"
+   
+- name: Copy static index.html to tomcat webapps/ROOT/index.html on App Servers
+  template:
+   src: index.html.j2
+   dest: /usr/share/tomcat/webapps/ROOT/index.html
+   mode: 0644
+#  with_indexed_items:
+#   - "{{ groups['apps'] }}"
+
+- name: copy static index.html to tomcat webapps/ansible/index.html on App Servers
+  template:
+   src: index.html.j2
+   dest: /usr/share/tomcat/webapps/ansible/index.html
+#  with_indexed_items:
+#   - "{{ groups['apps'] }}"
+
+- name: Start tomcat on App Servers
+  service:
+   name: tomcat
+   state: started
+#  with_indexed_items:
+#   - "{{ groups['apps'] }}"
+#- name: Install Apache on App Servers
+#  yum:
+#   name: httpd
+#   state: latest
+
+#- name: Enable Apache at boot on App Servers
+#  service:
+#   name: httpd
+#   enabled: yes
+
+#- name: Start Apache on App Servers
+#  service:
+#   name: httpd
+#   state: started

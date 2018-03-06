@@ -1,0 +1,20 @@
+---
+#- name: Installing HTTPD Package on FrontEnd Server {{ inventory_hostname }}
+#  package:
+#   name: httpd
+#   state: latest
+
+- name: Installing HAProxy Package on FrontEnd Server {{ inventory_hostname }}
+  yum:
+   name: haproxy 
+   state: latest
+
+- name: Configure haproxy on FrontEnd Server {{ inventory_hostname }}
+  template:
+   src: haproxy.cfg.j2
+   dest: /etc/haproxy/haproxy.cfg
+
+- name: Start HAproxy on FrontEnd Server {{ inventory_hostname }}
+  service:
+   name: haproxy
+   state: started
