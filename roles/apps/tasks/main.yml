@@ -1,3 +1,11 @@
+- name: Configure Hosts File on App Server {{ inventory_hostname }}
+  template:
+   src: hosts
+   dest: /etc/hosts
+   owner: root
+   group: root
+   mode: 0644
+
 - name: Installing  tomcat on App Servers 
   package:
    name: tomcat
@@ -46,6 +54,14 @@
   service:
    name: tomcat
    state: started
+
+
+- name: Testing  Services on App Server {{ inventory_hostname }}
+  wait_for: host = {{ inventory_hostname }} port = 8080
+  delegate_to: workstation-291b.rhpds.opentlc.com
+
+
+
 #  with_indexed_items:
 #   - "{{ groups['apps'] }}"
 #- name: Install Apache on App Servers

@@ -1,18 +1,33 @@
+- name: Configure Hosts File on DB Server {{ inventory_hostname }}
+  template:
+   src: hosts
+   dest: /etc/hosts
+   owner: root
+   group: root
+   mode: 0644
+
 - name: install postgres
   yum:
    name: postgresql-server
    state: latest
+
 - name: enable apache at boot
   service:
    name: postgresql
    enabled: yes
+
 - name: check if /var/lib/pgsql/data direcory
   command: ls /var/lib/pgsql/data
   register: check_pgsql_dir
+
 - name: initilize postgres
   command: postgresql-setup initdb
   when: check_pgsql_dir.stdout == ""
+
 - name: initilize postgres some more
   command: chkconfig postgresql on
   notify: postgres_start
 
+- name: Testing  Services on DB Server {{ inventory_hostname }}
+  wait_for: host = {{ inventory_hostname }} port = 5432
+  delegate_to: "{{ inventory_hostname }}"

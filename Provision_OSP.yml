@@ -1,5 +1,5 @@
 ---
-- hosts: workstation-291b.rhpds.opentlc.com
+- hosts: jumpbox
   become: yes
   gather_facts: False
   roles:

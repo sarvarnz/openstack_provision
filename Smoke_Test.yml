@@ -1,0 +1,11 @@
+- hosts: jumpbox
+  gather_facts: False
+  name: Smoke Test for the Services Running Under QA Environment
+  tasks: 
+   - action: uri url=http://frontend return_content=yes
+     register: webpage
+   - fail: msg='There some issue with QA Environment'
+     when: "'Ansible has done its job' not in webpage.content"
+   - debug: 
+      msg: 'QA Environment is Good to Go' 
+     when: "'Ansible has done its job' in webpage.content"

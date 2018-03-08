@@ -1,0 +1,9 @@
+- hosts: jumpbox
+  tasks:
+  - name: Gather facts
+    include_role:
+     name: osp-facts
+  - name: Destroying Servers
+    include_role:
+     name: osp-cleanup
+

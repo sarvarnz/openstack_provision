@@ -1,0 +1,6 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+10.10.10.7  frontend
+10.10.10.15 app1
+10.10.10.13 app2
+10.10.10.14 db

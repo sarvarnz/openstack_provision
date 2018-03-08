@@ -1,0 +1,61 @@
+---
+- name: Stoping Instance frontend
+  os_server_action:
+   cloud: ospcloud
+   server: frontend
+   action: stop
+   wait: true
+
+
+- name: Destroying server instance frontend
+  os_server:
+   cloud: ospcloud
+   name: frontend
+   state: absent
+   wait: true
+
+- name: Stoping Instance App1
+  os_server_action:
+   cloud: ospcloud
+   server: app1
+   action: stop
+   wait: true
+
+
+- name: Destroying server App1
+  os_server:
+   cloud: ospcloud
+   name: app1
+   state: absent
+   wait: true
+
+- name: Stoping Server App2
+  os_server_action:
+   cloud: ospcloud
+   server: app2
+   action: stop
+   wait: true
+
+
+- name: Destroying server App2
+  os_server:
+   cloud: ospcloud
+   name: app2
+   state: absent
+   wait: true
+
+- name: Stoping Server DB
+  os_server_action:
+   cloud: ospcloud
+   server: db
+   action: stop
+   wait: true
+
+
+- name: Destroying server DB
+  os_server:
+   cloud: ospcloud
+   name: db
+   state: absent
+   wait: true
+

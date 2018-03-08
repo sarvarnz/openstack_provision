@@ -14,7 +14,19 @@
    src: haproxy.cfg.j2
    dest: /etc/haproxy/haproxy.cfg
 
+- name: Configure haproxy on FrontEnd Server {{ inventory_hostname }}
+  template:
+   src: hosts
+   dest: /etc/hosts
+   owner: root
+   group: root
+   mode: 0644
+
 - name: Start HAproxy on FrontEnd Server {{ inventory_hostname }}
   service:
    name: haproxy
    state: started
+
+- name: Testing Frontend Services 
+  wait_for: host = {{ inventory_hostname }} port = 80
+  delegate_to: workstation-291b.rhpds.opentlc.com
