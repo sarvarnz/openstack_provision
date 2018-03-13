@@ -58,7 +58,7 @@
 
 - name: Testing  Services on App Server {{ inventory_hostname }}
   wait_for: host = {{ inventory_hostname }} port = 8080
-  delegate_to: workstation-291b.rhpds.opentlc.com
+  delegate_to: workstation-8cf3.rhpds.opentlc.com
 
 
 
