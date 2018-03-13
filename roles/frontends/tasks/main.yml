@@ -29,4 +29,4 @@
 
 - name: Testing Frontend Services 
   wait_for: host = {{ inventory_hostname }} port = 80
-  delegate_to: workstation-291b.rhpds.opentlc.com
+  delegate_to: workstation-8cf3.rhpds.opentlc.com
