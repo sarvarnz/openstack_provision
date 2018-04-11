@@ -37,19 +37,19 @@
      - test_inventory
 
 - hosts: appdbs
-  gather_facts: False
+  gather_facts: True
   name: Configure DB Server
   roles:
    - appdbs
   
 - hosts: apps
-  gather_facts: False 
+  gather_facts: True 
   name: Configuring App Server
   roles:
    - apps
 
 - hosts: frontends
-  gather_facts: False
+  gather_facts: True
   name: Configuring FrontEnd Server
   roles:
    - frontends
